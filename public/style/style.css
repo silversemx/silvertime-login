@@ -1,0 +1,15 @@
+/*** login ***/
+
+.login {
+	background-image: url('../assets/background-img.png') !important;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+}
+
+/*** buttons ***/
+
+.btn-submit {
+	background-color: #34475c !important;
+	border-color: #34475c !important;
+}
