@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Components
 import Login from './components/auth/Login';
 import Apps from './components/apps/Apps';
+import Authentication from './components/main/Authentication';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -13,11 +14,13 @@ import store from './store';
 
 const App = () => {
 	return (
-		<Provider store= { store }>
+		<Provider store={ store }>
 			<Router>
 				<div className='App'>
 					<Routes>
-						<Route path='/' element={ <Login /> } exact />
+						<Route path='/auth' element={ <Authentication /> } />
+
+						<Route path='/' element={ <Login /> } />
 						
 						<Route path='/apps' element={ <Apps /> } exact />
 					</Routes>
