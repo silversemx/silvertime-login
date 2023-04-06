@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/auth/Login';
 import Apps from './components/apps/Apps';
 import Authentication from './components/main/Authentication';
+import PrivateRoute from './router/PrivateRoute';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -22,7 +23,9 @@ const App = () => {
 
 						<Route path='/' element={ <Login /> } />
 						
-						<Route path='/apps' element={ <Apps /> } exact />
+						<Route element={ <PrivateRoute /> }>
+							<Route path='/apps' element={ <Apps /> } />
+						</Route>
 					</Routes>
 				</div>
 			</Router>
