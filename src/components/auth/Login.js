@@ -19,7 +19,7 @@ const Login = () => {
 		e.preventDefault();
 
 		if (validateMsgInfo) {
-			setAlert({ display: true, type: 'danger', msg: 'Campos faltantes!' });
+			setAlert({ display: true, type: 'danger', msg: 'Missing fields!' });
 			return;
 		}
 		setAlert(alertInitialState);
@@ -29,27 +29,27 @@ const Login = () => {
 		<Container className='login' fluid>
 			<Card className='shadow-lg p-4 mb-5 bg-body-tertiary rounded' style={{ marginLeft: '235px', width: '30rem' }} border='light'>
 				<Card.Body>
-					<Card.Title className='text-center mt-3 mb-5' as={'h1'}>Iniciar Sesión</Card.Title>
+					<Card.Title className='text-center mt-3 mb-5' as={'h1'}>Log In</Card.Title>
 						{alert.display &&
 							<CustomAlert type={alert.type} msg={alert.msg} />
 						}
 
 						<Form className='mb-5'>
 							<Form.Group className='mb-3' controlId='formBasicEmail'>
-								<Form.Label className='fs-5'>Nombre de Usuario</Form.Label>
+								<Form.Label className='fs-5'>Username</Form.Label>
 								<Form.Control
 									size='lg'
-									placeholder='Ingresa nombre de usuario'
+									placeholder='Type your username'
 									value={loginUserInfo.username}
 									onChange={(e) => setLoginUserInfo({ ...loginUserInfo, username: e.target.value})}
 								/>
 							</Form.Group>
 							<Form.Group className='mb-3' controlId='formBasicPassword'>
-								<Form.Label className='fs-5'>Contraseña</Form.Label>
+								<Form.Label className='fs-5'>Password</Form.Label>
 								<Form.Control
 									size='lg'
 									type='password'
-									placeholder='Ingresa contraseña'
+									placeholder='Type your password'
 									value={loginUserInfo.password}
 									onChange={(e) => setLoginUserInfo({ ...loginUserInfo, password: e.target.value})}
 								/>
@@ -57,7 +57,7 @@ const Login = () => {
 						</Form>
 						<div className='d-grid gap-2 py-3'>
 							<Button className='btn-submit' size='lg' style={{ borderRadius: '35px' }} onClick={(e) => handleUserAction(e)}>
-								Iniciar Sesión
+								Log In
 							</Button>
 						</div>
 				</Card.Body>
