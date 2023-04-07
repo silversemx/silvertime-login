@@ -7,9 +7,15 @@ import { Container, Card, Form, Button } from 'react-bootstrap';
 // Components
 import CustomAlert from '../utils/CustomAlert';
 
-const Login = () => {
-	const [loginUserInfo, setLoginUserInfo] = useState({ username: '', password: '' });
+// Actions
+import { user_login } from '../../redux/actions/authActions';
 
+const Login = () => {
+	const dispatch = useDispatch();
+
+	const { login_loading, login_success, auth_errors } = useSelector(state => state.auth);
+
+	const [loginUserInfo, setLoginUserInfo] = useState({ username: '', password: '' });
 	const alertInitialState = { display: false, type: '', msg: '' }
 	const [alert, setAlert] = useState(alertInitialState);
 
@@ -23,6 +29,8 @@ const Login = () => {
 			return;
 		}
 		setAlert(alertInitialState);
+
+		dispatch(user_login(loginUserInfo));
 	}
 
 	return (
