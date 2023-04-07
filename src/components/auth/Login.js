@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // React Bootstrap
 import { Container, Card, Form, Button } from 'react-bootstrap';
+
+// Packages
+import Lottie from 'lottie-react';
+import BounceLoader from 'react-spinners/BounceLoader';
 
 // Components
 import CustomAlert from '../utils/CustomAlert';
@@ -13,6 +17,9 @@ import { user_login } from '../../redux/actions/authActions';
 // Utils
 import errorExists from '../../utils/errorExists';
 
+// Icons
+import checkAnimation from '../../static/icons/checkAnimation.json';
+
 const Login = () => {
 	const dispatch = useDispatch();
 
@@ -21,6 +28,8 @@ const Login = () => {
 	const [loginUserInfo, setLoginUserInfo] = useState({ username: '', password: '' });
 	const alertInitialState = { display: false, type: '', msg: '' }
 	const [alert, setAlert] = useState(alertInitialState);
+
+	const lottieRef = useRef(null);
 
 	const validateMsgInfo = loginUserInfo.username === '' || loginUserInfo.password === '';
 	
@@ -40,7 +49,7 @@ const Login = () => {
 		<Container className='login' fluid>
 			<Card className='shadow-lg p-4 mb-5 bg-body-tertiary rounded' style={{ marginLeft: '235px', width: '30rem' }} border='light'>
 				<Card.Body>
-					<Card.Title className='text-center mt-3 mb-5' as={'h1'}>Log In</Card.Title>
+					<Card.Title className='text-center mt-3 mb-4' as={'h1'}>Log In</Card.Title>
 						{alert.display &&
 							<CustomAlert type={alert.type} msg={alert.msg} />
 						}
@@ -71,8 +80,20 @@ const Login = () => {
 							</Form.Group>
 						</Form>
 						<div className='d-grid gap-2 py-3'>
-							<Button className='btn-submit' size='lg' style={{ borderRadius: '35px' }} onClick={(e) => handleUserAction(e)}>
-								Log In
+							<Button className='btn-submit py-1' size='lg' style={{ borderRadius: '35px' }} onClick={(e) => handleUserAction(e)}>
+								{login_success
+									?	<Lottie
+											loop={false}
+											lottieRef={lottieRef}
+											animationData={checkAnimation}
+											style={{ height: '38px' }}
+										/>
+									:	login_loading
+										?	<div className='d-flex justify-content-center py-1'>
+												<BounceLoader color='white' size={30} speedMultiplier={1.5} />
+											</div>
+										:	<p className='m-0 py-1'>Log In</p>
+								}
 							</Button>
 						</div>
 				</Card.Body>

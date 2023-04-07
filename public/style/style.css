@@ -52,6 +52,7 @@ html, body, #root, .App {
 .btn-submit {
 	background-color: #34475c !important;
 	border-color: #34475c !important;
+	text-align: center !important;
 }
 
 /*** apps ***/
