@@ -10,6 +10,9 @@ import CustomAlert from '../utils/CustomAlert';
 // Actions
 import { user_login } from '../../redux/actions/authActions';
 
+// Utils
+import errorExists from '../../utils/errorExists';
+
 const Login = () => {
 	const dispatch = useDispatch();
 
@@ -40,6 +43,10 @@ const Login = () => {
 					<Card.Title className='text-center mt-3 mb-5' as={'h1'}>Log In</Card.Title>
 						{alert.display &&
 							<CustomAlert type={alert.type} msg={alert.msg} />
+						}
+
+						{errorExists(auth_errors, 'user_login') &&
+							<CustomAlert type='danger' msg={auth_errors['user_login'].msg} />
 						}
 
 						<Form className='mb-5'>
