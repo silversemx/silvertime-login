@@ -16,7 +16,7 @@ const Header = () => {
 				<Navbar.Collapse id='navbarScroll'>
 					<Nav className='ms-auto'>
 						<NavDropdown 
-							title={<Fragment><i className='bi bi-person-circle fs-5 me-2'></i>Your Account</Fragment>}
+							title={<Fragment><i className='bi bi-person-circle fs-5 me-2'></i>Account</Fragment>}
 							id='userDropdown' 
 							align='end'
 							active
