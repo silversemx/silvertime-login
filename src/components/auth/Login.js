@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Container, Card, Form, Button } from 'react-bootstrap';
 
 // Packages
+import { sha256 } from 'js-sha256';
 import Lottie from 'lottie-react';
 import BounceLoader from 'react-spinners/BounceLoader';
 
@@ -24,14 +25,13 @@ const Login = () => {
 	const dispatch = useDispatch();
 
 	const { login_loading, login_success, auth_errors } = useSelector(state => state.auth);
-
-	const [loginUserInfo, setLoginUserInfo] = useState({ username: '', password: '' });
+	const [loginUserInfo, setLoginUserInfo] = useState({ email: '', password: '' });
 	const alertInitialState = { display: false, type: '', msg: '' }
 	const [alert, setAlert] = useState(alertInitialState);
 
 	const lottieRef = useRef(null);
 
-	const validateMsgInfo = loginUserInfo.username === '' || loginUserInfo.password === '';
+	const validateMsgInfo = loginUserInfo.email === '' || loginUserInfo.password === '';
 	
 	const handleUserAction = (e) => {
 		e.preventDefault();
@@ -42,7 +42,10 @@ const Login = () => {
 		}
 		setAlert(alertInitialState);
 
-		dispatch(user_login(loginUserInfo));
+		let user =  { ...loginUserInfo };
+		user.password = sha256(user.password);
+
+		dispatch(user_login(user));
 	}
 
 	return (
@@ -60,12 +63,12 @@ const Login = () => {
 
 						<Form className='mb-5'>
 							<Form.Group className='mb-3' controlId='formBasicEmail'>
-								<Form.Label className='fs-5'>Username</Form.Label>
+								<Form.Label className='fs-5'>Email</Form.Label>
 								<Form.Control
 									size='lg'
-									placeholder='Type your username'
-									value={loginUserInfo.username}
-									onChange={(e) => setLoginUserInfo({ ...loginUserInfo, username: e.target.value})}
+									placeholder='Type your email'
+									value={loginUserInfo.email}
+									onChange={(e) => setLoginUserInfo({ ...loginUserInfo, email: e.target.value})}
 								/>
 							</Form.Group>
 							<Form.Group className='mb-3' controlId='formBasicPassword'>
