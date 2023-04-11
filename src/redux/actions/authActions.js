@@ -10,14 +10,18 @@ import {
 	SET_CURRENT_USER
 } from '../types';
 
+import isEmpty from '../../utils/isEmpty';
+
 const cookies = new Cookies ();
 
 // Set logged user
-export const user_set_current = (decoded) => {
-	return {
+export const user_set_current = (decoded) => dispatch => {
+	sessionStorage.setItem('isAuthenticated', !isEmpty(decoded));
+
+	dispatch({
 		type: SET_CURRENT_USER,
 		payload: decoded
-	}
+	})
 }
 
 // Log user in
