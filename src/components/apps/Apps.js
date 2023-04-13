@@ -26,7 +26,7 @@ const SingleApp = (props) => {
 	);
 }
 
-SingleApp.prototypes = {
+SingleApp.propTypes = {
 	img: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,
 	desc: PropTypes.string.isRequired,

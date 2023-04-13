@@ -34,7 +34,7 @@ const CustomAlert = (props) => {
 	);
 }
 
-CustomAlert.prototypes = {
+CustomAlert.propTypes = {
 	type: PropTypes.string.isRequired,
 	msg: PropTypes.string.isRequired
 }
