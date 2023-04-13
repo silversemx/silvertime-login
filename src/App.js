@@ -13,6 +13,11 @@ import PrivateRoute from './router/PrivateRoute';
 import { Provider } from 'react-redux';
 import store from './store';
 
+// Actions
+import { user_token_check } from './redux/actions/authActions';
+
+user_token_check (store);
+
 const App = () => {
 	return (
 		<Provider store={ store }>
