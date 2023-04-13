@@ -32,10 +32,10 @@ const Header = () => {
 							align='end'
 							active
 						>
-							<NavDropdown.Item>
+							{/* <NavDropdown.Item href='/account'>
 								<i className='bi bi-person-circle me-2'></i>Account
 							</NavDropdown.Item>
-							<NavDropdown.Divider />
+							<NavDropdown.Divider /> */}
 							<NavDropdown.Item onClick={(e) => handleLogout(e)}>
 								<i className='bi bi-box-arrow-right me-2'></i>Log Out
 							</NavDropdown.Item>
